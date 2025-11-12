@@ -1,0 +1,1747 @@
+/* ======== Estilos Generales y Fuentes ======== */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* Colores Primarios */
+  --color-primario: #2c3e50;
+  --color-secundario: #3498db;
+  --color-terciario: #27ae60;
+  
+  /* Colores Semánticos */
+  --color-error: #e74c3c;
+  --color-warning: #f39c12;
+  --color-success: #2ecc71;
+  
+  /* Colores Neutros */
+  --color-texto: #333;
+  --color-texto-light: #5d6d7e;
+  --color-texto-lighter: #777;
+  --color-fondo: #f9f9f9;
+  --color-fondo-light: #f5f7fa;
+  --color-fondo-card: #fff;
+  --color-border: #e0e4e8;
+  
+  /* Efectos */
+  --sombra-caja: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --sombra-hover: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --sombra-inset: inset 0 1px 4px rgba(0, 0, 0, 0.03);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #2980b9 0%, #27ae60 100%);
+  --gradient-primary-alt: linear-gradient(135deg, #e9f5ff 0%, #f9fdfb 100%);
+  --gradient-danger: linear-gradient(135deg, #d63031, #ff7675);
+  --gradient-danger-hover: linear-gradient(135deg, #ff4d4d, #e84393);
+  
+  /* Transiciones */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Espacios */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 50%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* ======== Cabecera y Navegación ======== */
+/* ====== HEADER BASE ====== */
+.header {
+  background-color: #fff;
+  box-shadow: var(--sombra-caja);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ====== CONTENEDOR PRINCIPAL ====== */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 70px;
+}
+
+/* ====== LOGO ====== */
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-primario);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.logo img {
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+/* ====== NAVEGACIÓN ====== */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--color-texto);
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+/* Link activo */
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primario);
+  border-radius: 2px;
+}
+
+/* ====== BOTÓN LOGOUT ====== */
+.logout-btn {
+  background: linear-gradient(135deg, #d63031, #ff7675);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(214, 48, 49, 0.3);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #ff4d4d, #e84393);
+  box-shadow: 0 4px 14px rgba(214, 48, 49, 0.45);
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: scale(0.97);
+  background: #c23616;
+}
+
+/* ====== HAMBURGUESA ====== */
+.hamburger {
+  display: none;
+  font-size: 1.6rem;
+  color: var(--color-primario);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.1);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+    height: auto;
+  }
+
+  .hamburger {
+    display: block;
+    align-self: flex-end;
+    margin-top: -40px;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  .nav-menu.active {
+    max-height: 400px;
+    margin-top: 10px;
+  }
+
+  .nav-menu a {
+    width: 100%;
+    text-align: left;
+    padding: 8px 0;
+  }
+
+  .logout-btn {
+    width: 100%;
+    text-align: left;
+    margin-top: 10px;
+  }
+}
+
+/* ======== Estilos para Login y Admin Panel ======== */
+
+/* Contenedor del Login */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f2f4f7;
+}
+
+.login-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.login-container h2 {
+  color: #2c3e50;
+  margin-bottom: 24px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.login-container button {
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s;
+}
+
+.login-container button:hover {
+  opacity: 0.9;
+}
+
+.login-error {
+  color: #c0392b;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* ===== PANEL GENERAL ===== */
+.admin-panel {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding: 50px 0;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-panel h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.decorative-line {
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  margin: 10px auto 30px auto;
+  border-radius: 2px;
+}
+
+/* ===== FORMULARIO ===== */
+.evento-form {
+  width: 95%;
+  max-width: 800px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-top: 6px solid #27ae60;
+  transition: 0.3s ease;
+}
+
+.evento-form h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #2980b9;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.evento-form input,
+.evento-form textarea {
+  padding: 12px 14px;
+  border: 1px solid #cfd8dc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: 0.2s;
+  width: 100%;
+}
+
+.evento-form input:focus,
+.evento-form textarea:focus {
+  border-color: #27ae60;
+  outline: none;
+  box-shadow: 0 0 4px rgba(39, 174, 96, 0.3);
+}
+
+.evento-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.evento-form input[type="file"] {
+  border: 1px dashed #bfc9ca;
+  background: #fdfefe;
+  padding: 14px;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-guardar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
+}
+
+.btn-cancelar {
+  background: linear-gradient(90deg, #c0392b 0%, #e74c3c 100%);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn-cancelar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(192, 57, 43, 0.25);
+}
+
+/* ===== GRID DE EVENTOS ===== */
+.eventos-lista {
+  width: 95%;
+  max-width: 1100px;
+  margin-top: 40px;
+}
+
+.eventos-lista h3 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* ===== TARJETAS ===== */
+.evento-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e3e8ee;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  border-top: 5px solid #27ae60;
+}
+
+.evento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.evento-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.evento-card h4 {
+  font-size: 1.2rem;
+  color: #2980b9;
+  margin-bottom: 6px;
+}
+
+.evento-card p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.evento-card strong {
+  color: #2c3e50;
+}
+
+/* ===== BOTONES DE CADA TARJETA ===== */
+.botones-card {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-editar,
+.btn-eliminar {
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn-editar {
+  background: #2980b9;
+}
+
+.btn-editar:hover {
+  background: #3498db;
+}
+
+.btn-eliminar {
+  background: #c0392b;
+}
+
+.btn-eliminar:hover {
+  background: #e74c3c;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .evento-form {
+    padding: 20px;
+  }
+
+  .eventos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .evento-card img {
+    height: 180px;
+  }
+}
+
+
+/* ======== Sección Principal (Hero) ======== */
+.hero {
+  background: #424242;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 60px 40px;
+  border-radius: 0 0 40px 40px;
+  margin: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+.hero-content h1 span {
+  color: var(--color-naranja);
+}
+.hero-content h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.hero-logo img {
+  width:400px;
+  height: 200px;
+  border-radius: 20px;
+}
+
+/* ======== Sección Propuesta Educativa ======== */
+/* Estilos para la sección Propuesta */
+.propuesta {
+  background: #f9f9f9;
+  padding: 40px 0;
+}
+
+.propuesta-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 32px 24px;
+  text-align: center;
+  border-top: 6px solid #27ae60;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.propuesta-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+.propuesta h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.decorative-line {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  margin: 0 auto 24px auto;
+  border-radius: 2px;
+}
+
+.propuesta h3 {
+  font-size: 1.5rem;
+  color: #1e6b9e;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.propuesta p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+.propuesta ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.propuesta ul li {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 10px;
+  padding-left: 0;
+  position: relative;
+}
+
+.propuesta ul li::before {
+  content: "✔";
+  color: #27ae60;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .propuesta-container {
+    padding: 24px 16px;
+  }
+
+  .propuesta h2 {
+    font-size: 1.6rem;
+  }
+
+  .propuesta h3 {
+    font-size: 1.3rem;
+  }
+
+  .propuesta p {
+    font-size: 1rem;
+  }
+}
+
+/* ======== Sección Organigrama ======== */
+.organigrama {
+  background: #f4f6f8;
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.organigrama-container {
+  max-width: 1000px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 50px 40px;
+  text-align: center;
+  border-top: 6px solid #2980b9;
+  position: relative;
+}
+
+.organigrama h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.decorative-line {
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  margin: 0 auto 40px auto;
+  border-radius: 2px;
+}
+
+/* estructura */
+.organigrama-tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 12px;
+}
+
+/* niveles: mantienen las tarjetas centradas */
+.nivel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  position: relative;
+  padding-top: 14px; /* espacio para conectar */
+  padding-bottom: 14px;
+}
+
+/* cajas */
+.persona {
+  background: linear-gradient(135deg, #e9f5ff 0%, #f9fdfb 100%);
+  border: 2px solid #2980b9;
+  border-radius: 12px;
+  padding: 16px 24px;
+  min-width: 220px;
+  max-width: 260px;
+  font-size: 1.05rem;
+  color: #1a456b;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.22s ease;
+}
+
+/* pequeño efecto */
+.persona:hover {
+  transform: translateY(-4px);
+  border-color: #27ae60;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* línea horizontal central (hline) centrada y responsiva */
+.hline {
+  width: min(80%, 720px);
+  height: 2px;
+  background: #27ae60;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* conector vertical entre niveles (centra horizontalmente) */
+.conector-vertical {
+  width: 2px;
+  height: 28px;
+  background: #27ae60;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* conector que parte desde el principal hacia la hline (un poco más largo para buena separación) */
+.conector-vertical.from-top {
+  height: 40px;
+}
+
+/* pequeñas líneas verticales desde la hline hasta el centro de cada tarjeta */
+/* hacemos que cada .persona tenga su propio conector superior para unirse con la hline */
+.nivel .persona::before {
+  content: "";
+  position: absolute;
+  top: -28px; /* altura del conector superior (ajustable) */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 28px;
+  background: #27ae60;
+  z-index: 0;
+}
+
+/* evitar que el primer nivel (principal) dibuje esos conectores */
+.nivel-principal .persona::before {
+  display: none;
+}
+
+/* para estética, una pequeña curva usando sombra en la hline */
+.hline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 6px;
+  border-radius: 3px;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(41,128,185,0.06), rgba(39,174,96,0.06));
+}
+
+/* ajustes móviles */
+@media (max-width: 768px) {
+  .organigrama-container {
+    padding: 30px 18px;
+  }
+
+  .hline {
+    width: 92%;
+  }
+
+  .conector-vertical {
+    height: 18px;
+  }
+
+  .nivel .persona::before {
+    top: -18px;
+    height: 18px;
+  }
+
+  .persona {
+    min-width: 160px;
+    max-width: 220px;
+    font-size: 1rem;
+  }
+}
+
+/* ======== Sección Documentos ======== */
+.documentos {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: var(--sombra-caja);
+}
+
+.documents-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--color-primario);
+}
+
+.documents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.documento-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--color-texto);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.documento-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  background-color: #3498db91;
+}
+
+.documento-item .document-icon {
+  font-size: 1.8rem;
+  color: var(--color-secundario);
+  margin-right: 15px;
+}
+
+.documento-item div {
+  flex-grow: 1;
+}
+
+.documento-item h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.documento-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.documento-item .fa-download {
+  font-size: 1.2rem;
+  color: var(--color-primario);
+}
+
+.documents-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-horarios {
+  padding: 10px 20px;
+  background-color: var(--color-primario);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.btn-horarios:hover {
+  background-color: #2980b9;
+}
+
+.horarios-link {
+  color: white;
+  text-decoration: none;
+}
+/* ======== Eventos ======== */
+.eventos {
+  background: #f9f9f9;
+  padding: 60px 0;
+}
+
+.eventos-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.eventos h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.decorative-line {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #2980b9 0%, #27ae60 100%);
+  margin: 0 auto 32px auto;
+  border-radius: 2px;
+}
+
+.eventos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.evento-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.evento-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.evento-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.evento-content {
+  padding: 16px 20px;
+}
+
+.evento-content h3 {
+  color: #2980b9;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+.evento-fecha {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.eventos-loading {
+  text-align: center;
+  color: #555;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .eventos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* ======== Sección Horarios ======== */
+/* Estilos para la página de Horarios - Versión Acordeón */
+
+/* Contenedor principal de toda la página */
+.horarios-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 2rem;
+  background-color: #fdfdfd;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Título principal "Horarios Académicos" */
+.horarios-container h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  position: relative;
+  font-weight: 600;
+}
+
+/* Línea decorativa debajo del título principal */
+.horarios-container h1::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4a6fa5, #166088);
+  border-radius: 2px;
+}
+
+/* Centrar títulos de secciones */
+.horarios-section h2 {
+  text-align: center;
+}
+
+
+/* Contenedor para cada sección grande (ej. "Ciclo Básico", "Tecnicaturas") */
+.horarios-section {
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Títulos de las secciones grandes (h2) */
+.horarios-section h2 {
+  color: #166088;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* --- Estilos del Sistema de Acordeón --- */
+
+/* Contenedor para los botones desplegables */
+.accordion-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espacio entre los botones */
+}
+
+.accordion-item {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* Clave para que el borde redondeado funcione bien con la animación */
+  transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:has(.active) {
+    box-shadow: 0 5px 15px rgba(74, 111, 165, 0.2);
+    border-color: #4a6fa5;
+}
+
+/* Estilo del botón desplegable */
+.accordion-button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border: none;
+  text-align: left;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #34495e;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-button:hover {
+  background-color: #e9ecef;
+}
+
+/* Estilo del botón cuando su contenido está visible */
+.accordion-button.active {
+  background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+  color: white;
+}
+
+/* Icono de "+" y "-" */
+.accordion-icon {
+  font-size: 1.8rem;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.accordion-button.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+/* Contenedor del contenido desplegable */
+.accordion-content {
+  max-height: 0; /* Por defecto está cerrado */
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+  background-color: #fff;
+  padding: 0 1.5rem; /* El padding vertical se aplica al abrirse */
+}
+
+/* Estilo del contenido cuando está abierto */
+.accordion-content.open {
+  max-height: 1500px; /* Un valor alto para permitir que el contenido se expanda */
+  padding: 1.5rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+
+/* --- Estilos de las Tarjetas de Horarios (dentro del acordeón) --- */
+
+/* Grilla para las tarjetas individuales de cada año */
+.horarios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta individual para cada horario (ej. "1er Año Mañana") */
+.horario-card {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0f0f0;
+}
+
+.horario-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-color: #166088;
+}
+
+/* Título del año dentro de la tarjeta */
+.horario-card h5 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* Enlace/botón de descarga */
+.download-link {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #4a6fa5 0%, #166088 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(74, 111, 165, 0.2);
+}
+
+.download-link:hover {
+  background: linear-gradient(135deg, #166088 0%, #0d4b6e 100%);
+  box-shadow: 0 6px 12px rgba(74, 111, 165, 0.3);
+  transform: translateY(-2px);
+}
+/* Animación mejorada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.horario-card {
+  animation: fadeInUp 0.5s ease forwards;
+  opacity: 0;
+}
+
+.horario-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.horario-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.horario-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.horario-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.horario-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.horario-card:nth-child(6) {
+  animation-delay: 0.6s;
+}
+.horario-card:nth-child(7) {
+  animation-delay: 0.7s;
+}
+.horario-card:nth-child(8) {
+  animation-delay: 0.8s;
+}
+.horario-card:nth-child(9) {
+  animation-delay: 0.9s;
+}
+.horario-card:nth-child(10) {
+  animation-delay: 1s;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .horarios-container {
+    padding: 1.5rem;
+  }
+
+  .horarios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Toque adicional para los padres y directivos */
+.horario-card::before {
+  content: "📚";
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #4a6fa5;
+}
+
+.horarios-subsection {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-left: 4px solid #166088;
+  background: #f9fbfc;
+  border-radius: 8px;
+}
+
+.horarios-subsection h3 {
+  color: #4a6fa5;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* ======== Sección Historia - Estilo Línea de Tiempo ======== */
+.historia {
+  padding: 80px 20px;
+  background-color: #f8f9fa; /* Un fondo más neutro y limpio */
+}
+
+.historia-container {
+  max-width: 1000px; /* Ancho optimizado para la línea de tiempo */
+  margin: 0 auto;
+}
+
+.historia-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.historia-header h2 {
+  font-size: 2.8rem;
+  color: #2c3e50; /* Usamos colores directos para simplificar */
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.decorative-line {
+  width: 80px;
+  height: 4px;
+  background: #3498db; /* Color secundario */
+  margin: 0 auto 20px auto;
+  border-radius: 2px;
+}
+
+.historia-intro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #5d6d7e;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* --- Estilos de la Línea de Tiempo --- */
+.timeline-container {
+  position: relative;
+  width: 100%;
+}
+
+/* La línea vertical central */
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: #3498db;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+  border-radius: 3px;
+}
+
+/* Contenedor de cada evento (punto + contenido) */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+}
+
+/* Alineación de los items a la izquierda */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 70px;
+  text-align: right;
+}
+
+/* Alineación de los items a la derecha */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 70px;
+  text-align: left;
+}
+
+/* El punto en la línea de tiempo */
+.timeline-dot {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border: 4px solid #3498db;
+  top: 20px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-dot {
+  right: -9px; /* Ajuste para centrar el punto */
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -9px; /* Ajuste para centrar el punto */
+}
+
+/* La tarjeta con el contenido del evento */
+.timeline-content {
+  padding: 20px 25px;
+  background-color: white;
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.timeline-year {
+  background-color: #3498db;
+  color: white;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.timeline-title {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.timeline-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #5d6d7e;
+}
+
+/* --- Responsive para Móviles --- */
+@media screen and (max-width: 768px) {
+  /* Mover la línea a la izquierda */
+  .timeline-container::after {
+    left: 20px;
+  }
+
+  /* Mover todos los items a la derecha de la línea */
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 15px;
+  }
+  
+  /* Ajustar la alineación del texto */
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+    text-align: left;
+  }
+  
+  /* Mover todos los puntos a la línea */
+  .timeline-item .timeline-dot,
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 11px; /* 20px (posición de la línea) - 9px (mitad del punto) */
+  }
+}
+
+@media (max-width: 968px) {
+  .historia-content {
+    flex-direction: column;
+  }
+
+  .historia-image {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .historia {
+    padding: 60px 20px;
+  }
+
+  .historia-header h2 {
+    font-size: 2rem;
+  }
+
+  .historia-card {
+    padding: 20px;
+  }
+}
+
+/* ======== Pie de Página (Footer) ======== */
+.footer {
+  background-color: #f5f5f5;
+  padding: 2rem 0;
+  margin-top: 2rem;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.footer-info h4 {
+  margin: 0;
+  color: #333;
+}
+.footer-info p {
+  margin: 0;
+  color: #666;
+}
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+.footer-social a {
+  color: #666;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.footer-social a:hover {
+  color: #333;
+}
+.footer-bottom {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+  color: #666;
+  margin-top: 1rem;
+  width: 80%;
+  margin: 1rem auto 0;
+}
+/* ======================================================= */
+/* 🌐 RESPONSIVE GLOBAL — OPTIMIZACIÓN DE TODAS LAS SECCIONES */
+/* ======================================================= */
+
+/* --- Hasta 1200px (notebooks y pantallas medianas) --- */
+@media (max-width: 1200px) {
+  .nav-container {
+    padding: 0 25px;
+  }
+
+  .hero-content {
+    max-width: 90%;
+  }
+
+  .propuesta-container,
+  .organigrama-container,
+  .documentos-container,
+  .historia-container {
+    width: 90%;
+  }
+
+  .evento-card img {
+    height: 200px;
+  }
+
+  .admin-container {
+    padding: 40px;
+  }
+}
+
+/* --- Hasta 992px (tablets horizontales) --- */
+@media (max-width: 992px) {
+  .nav-menu {
+    gap: 20px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .propuesta-container,
+  .documentos-container,
+  .organigrama-container {
+    padding: 30px 20px;
+  }
+
+  .documentos-grid,
+  .eventos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+
+  .organigrama-nodo {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
+
+  .admin-form {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .admin-container {
+    padding: 30px;
+  }
+}
+
+/* --- Hasta 768px (tablets verticales y móviles grandes) --- */
+@media (max-width: 768px) {
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    font-size: 1.8rem;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 60%;
+    padding: 25px 20px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-menu a {
+    font-size: 1rem;
+    text-align: right;
+    padding: 10px;
+  }
+
+  .hero {
+    padding-top: 90px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .propuesta h2,
+  .historia h2,
+  .eventos-lista h3 {
+    font-size: 1.6rem;
+  }
+
+  .documentos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .eventos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  .organigrama-linea {
+    display: none;
+  }
+
+  .admin {
+    padding: 100px 0 40px;
+  }
+
+  .admin-form button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px 10px;
+  }
+}
+
+/* --- Hasta 576px (móviles medianos y chicos) --- */
+@media (max-width: 576px) {
+  .logo img {
+    height: 50px;
+  }
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .propuesta-container {
+    padding: 20px;
+  }
+
+  .propuesta h3 {
+    font-size: 1.2rem;
+  }
+
+  .organigrama-nodo {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+
+  .historia-container,
+  .documentos-container {
+    padding: 20px;
+  }
+
+  .evento-card {
+    padding: 14px;
+    border-left-width: 4px;
+  }
+
+  .evento-card img {
+    height: 150px;
+  }
+
+  .evento-card h4 {
+    font-size: 1rem;
+  }
+
+  .evento-card p {
+    font-size: 0.9rem;
+  }
+
+  .btn-editar,
+  .btn-eliminar {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+  }
+
+  .admin h2 {
+    font-size: 1.4rem;
+  }
+
+  .admin-form {
+    padding: 15px;
+  }
+
+  .admin-form input,
+  .admin-form textarea,
+  .admin-form select {
+    font-size: 0.9rem;
+  }
+
+  .nav-menu {
+    width: 100%;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Hasta 400px (teléfonos muy pequeños) --- */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .evento-card img {
+    height: 130px;
+  }
+
+  .admin-container {
+    padding: 20px;
+  }
+
+  .admin-form button,
+  .btn-editar,
+  .btn-eliminar {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .botones-card {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .nav-menu a {
+    padding: 8px;
+  }
+
+  .footer {
+    padding: 15px 0;
+  }
+}
