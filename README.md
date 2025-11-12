@@ -1,0 +1,1 @@
+Se presentan dos versiones del proyecto "Preversion" la cual es la version sin base de datos ni login, Y luego vemos "Version Final" la version final cuenta con database conectada a supabase, con gestion de eventos y login
